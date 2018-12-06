@@ -1,0 +1,105 @@
+From b745a2fdd0d29d5ce699841b5f3befeed1d61d28 Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Mon, 8 Feb 2016 10:33:58 +0100
+Subject: [PATCH] remove external from imported packages
+
+---
+ build_test.go     | 2 +-
+ client.go         | 8 ++++----
+ client_test.go    | 2 +-
+ container_test.go | 2 +-
+ tar.go            | 4 ++--
+ testing/server.go | 4 ++--
+ 6 files changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/build_test.go b/build_test.go
+index c9640f2..3a0a52a 100644
+--- a/build_test.go
++++ b/build_test.go
+@@ -9,7 +9,7 @@ import (
+ 	"reflect"
+ 	"testing"
+ 
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/archive"
++	"github.com/docker/docker/pkg/archive"
+ )
+ 
+ func TestBuildImageMultipleContextsError(t *testing.T) {
+diff --git a/client.go b/client.go
+index f7a3905..2856753 100644
+--- a/client.go
++++ b/client.go
+@@ -29,10 +29,10 @@ import (
+ 	"strings"
+ 	"time"
+ 
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/opts"
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/homedir"
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/stdcopy"
+-	"github.com/fsouza/go-dockerclient/external/github.com/hashicorp/go-cleanhttp"
++	"github.com/docker/docker/opts"
++	"github.com/docker/docker/pkg/homedir"
++	"github.com/docker/docker/pkg/stdcopy"
++	"github.com/hashicorp/go-cleanhttp"
+ )
+ 
+ const userAgent = "go-dockerclient"
+diff --git a/client_test.go b/client_test.go
+index 2dada57..005ceea 100644
+--- a/client_test.go
++++ b/client_test.go
+@@ -19,7 +19,7 @@ import (
+ 	"testing"
+ 	"time"
+ 
+-	"github.com/fsouza/go-dockerclient/external/github.com/hashicorp/go-cleanhttp"
++	"github.com/hashicorp/go-cleanhttp"
+ )
+ 
+ func TestNewAPIClient(t *testing.T) {
+diff --git a/container_test.go b/container_test.go
+index f0879a5..5e2ea3b 100644
+--- a/container_test.go
++++ b/container_test.go
+@@ -23,7 +23,7 @@ import (
+ 	"testing"
+ 	"time"
+ 
+-	"github.com/fsouza/go-dockerclient/external/github.com/hashicorp/go-cleanhttp"
++	"github.com/hashicorp/go-cleanhttp"
+ )
+ 
+ func TestStateString(t *testing.T) {
+diff --git a/tar.go b/tar.go
+index 48042cb..11e51b4 100644
+--- a/tar.go
++++ b/tar.go
+@@ -13,8 +13,8 @@ import (
+ 	"path/filepath"
+ 	"strings"
+ 
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/archive"
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/fileutils"
++	"github.com/docker/docker/pkg/archive"
++	"github.com/docker/docker/pkg/fileutils"
+ )
+ 
+ func createTarStream(srcPath, dockerfilePath string) (io.ReadCloser, error) {
+diff --git a/testing/server.go b/testing/server.go
+index 6bd899e..7f4c905 100644
+--- a/testing/server.go
++++ b/testing/server.go
+@@ -23,8 +23,8 @@ import (
+ 	"time"
+ 
+ 	"github.com/fsouza/go-dockerclient"
+-	"github.com/fsouza/go-dockerclient/external/github.com/docker/docker/pkg/stdcopy"
+-	"github.com/fsouza/go-dockerclient/external/github.com/gorilla/mux"
++	"github.com/docker/docker/pkg/stdcopy"
++	"github.com/gorilla/mux"
+ )
+ 
+ var nameRegexp = regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9_.-]+$`)
+-- 
+1.9.3
+
